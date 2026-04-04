@@ -1,0 +1,163 @@
+ARM GAS  C:\Users\KARTHI~1\AppData\Local\Temp\cceByL0d.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"uart.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.file 1 "Core/Src/uart.c"
+  20              		.section	.text.uart_write,"ax",%progbits
+  21              		.align	1
+  22              		.global	uart_write
+  23              		.syntax unified
+  24              		.thumb
+  25              		.thumb_func
+  27              	uart_write:
+  28              	.LVL0:
+  29              	.LFB134:
+   1:Core/Src/uart.c **** #include "main.h"
+   2:Core/Src/uart.c **** #include "uart.h"
+   3:Core/Src/uart.c **** #include <stdint.h>
+   4:Core/Src/uart.c **** #include <string.h>
+   5:Core/Src/uart.c **** 
+   6:Core/Src/uart.c **** 
+   7:Core/Src/uart.c **** 
+   8:Core/Src/uart.c **** 
+   9:Core/Src/uart.c **** extern UART_HandleTypeDef huart2; 
+  10:Core/Src/uart.c **** 
+  11:Core/Src/uart.c **** 
+  12:Core/Src/uart.c **** void uart_write(const char *s)
+  13:Core/Src/uart.c **** {
+  30              		.loc 1 13 1 view -0
+  31              		.cfi_startproc
+  32              		@ args = 0, pretend = 0, frame = 0
+  33              		@ frame_needed = 0, uses_anonymous_args = 0
+  34              		.loc 1 13 1 is_stmt 0 view .LVU1
+  35 0000 10B5     		push	{r4, lr}
+  36              	.LCFI0:
+  37              		.cfi_def_cfa_offset 8
+  38              		.cfi_offset 4, -8
+  39              		.cfi_offset 14, -4
+  40 0002 0446     		mov	r4, r0
+  14:Core/Src/uart.c ****     (void)HAL_UART_Transmit(&huart2, (uint8_t *)s, (uint16_t)strlen(s), HAL_MAX_DELAY);
+  41              		.loc 1 14 5 is_stmt 1 view .LVU2
+  42              		.loc 1 14 62 is_stmt 0 view .LVU3
+  43 0004 FFF7FEFF 		bl	strlen
+  44              	.LVL1:
+ARM GAS  C:\Users\KARTHI~1\AppData\Local\Temp\cceByL0d.s 			page 2
+
+
+  45              		.loc 1 14 11 discriminator 1 view .LVU4
+  46 0008 4FF0FF33 		mov	r3, #-1
+  47 000c 82B2     		uxth	r2, r0
+  48 000e 2146     		mov	r1, r4
+  49 0010 0148     		ldr	r0, .L3
+  50 0012 FFF7FEFF 		bl	HAL_UART_Transmit
+  51              	.LVL2:
+  15:Core/Src/uart.c **** }
+  52              		.loc 1 15 1 view .LVU5
+  53 0016 10BD     		pop	{r4, pc}
+  54              	.LVL3:
+  55              	.L4:
+  56              		.loc 1 15 1 view .LVU6
+  57              		.align	2
+  58              	.L3:
+  59 0018 00000000 		.word	huart2
+  60              		.cfi_endproc
+  61              	.LFE134:
+  63              		.section	.text.uart_read_char,"ax",%progbits
+  64              		.align	1
+  65              		.global	uart_read_char
+  66              		.syntax unified
+  67              		.thumb
+  68              		.thumb_func
+  70              	uart_read_char:
+  71              	.LFB135:
+  16:Core/Src/uart.c **** 
+  17:Core/Src/uart.c **** uint8_t uart_read_char(void)
+  18:Core/Src/uart.c **** {
+  72              		.loc 1 18 1 is_stmt 1 view -0
+  73              		.cfi_startproc
+  74              		@ args = 0, pretend = 0, frame = 8
+  75              		@ frame_needed = 0, uses_anonymous_args = 0
+  76 0000 00B5     		push	{lr}
+  77              	.LCFI1:
+  78              		.cfi_def_cfa_offset 4
+  79              		.cfi_offset 14, -4
+  80 0002 83B0     		sub	sp, sp, #12
+  81              	.LCFI2:
+  82              		.cfi_def_cfa_offset 16
+  19:Core/Src/uart.c ****     uint8_t ch = 0;
+  83              		.loc 1 19 5 view .LVU8
+  84              		.loc 1 19 13 is_stmt 0 view .LVU9
+  85 0004 0023     		movs	r3, #0
+  86 0006 8DF80730 		strb	r3, [sp, #7]
+  20:Core/Src/uart.c ****     (void)HAL_UART_Receive(&huart2, &ch, 1, HAL_MAX_DELAY);
+  87              		.loc 1 20 5 is_stmt 1 view .LVU10
+  88              		.loc 1 20 11 is_stmt 0 view .LVU11
+  89 000a 4FF0FF33 		mov	r3, #-1
+  90 000e 0122     		movs	r2, #1
+  91 0010 0DF10701 		add	r1, sp, #7
+  92 0014 0348     		ldr	r0, .L7
+  93 0016 FFF7FEFF 		bl	HAL_UART_Receive
+  94              	.LVL4:
+  21:Core/Src/uart.c ****     return ch;
+  95              		.loc 1 21 5 is_stmt 1 view .LVU12
+  22:Core/Src/uart.c **** }
+ARM GAS  C:\Users\KARTHI~1\AppData\Local\Temp\cceByL0d.s 			page 3
+
+
+  96              		.loc 1 22 1 is_stmt 0 view .LVU13
+  97 001a 9DF80700 		ldrb	r0, [sp, #7]	@ zero_extendqisi2
+  98 001e 03B0     		add	sp, sp, #12
+  99              	.LCFI3:
+ 100              		.cfi_def_cfa_offset 4
+ 101              		@ sp needed
+ 102 0020 00BD     		pop	{pc}
+ 103              	.L8:
+ 104 0022 00BF     		.align	2
+ 105              	.L7:
+ 106 0024 00000000 		.word	huart2
+ 107              		.cfi_endproc
+ 108              	.LFE135:
+ 110              		.text
+ 111              	.Letext0:
+ 112              		.file 2 "C:/xpack/xpack-arm-none-eabi-gcc-15.2.1-1.1-win32-x64/xpack-arm-none-eabi-gcc-15.2.1-1.1/
+ 113              		.file 3 "C:/xpack/xpack-arm-none-eabi-gcc-15.2.1-1.1-win32-x64/xpack-arm-none-eabi-gcc-15.2.1-1.1/
+ 114              		.file 4 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f411xe.h"
+ 115              		.file 5 "C:/xpack/xpack-arm-none-eabi-gcc-15.2.1-1.1-win32-x64/xpack-arm-none-eabi-gcc-15.2.1-1.1/
+ 116              		.file 6 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"
+ 117              		.file 7 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h"
+ 118              		.file 8 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h"
+ 119              		.file 9 "C:/xpack/xpack-arm-none-eabi-gcc-15.2.1-1.1-win32-x64/xpack-arm-none-eabi-gcc-15.2.1-1.1/
+ARM GAS  C:\Users\KARTHI~1\AppData\Local\Temp\cceByL0d.s 			page 4
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 uart.c
+C:\Users\KARTHI~1\AppData\Local\Temp\cceByL0d.s:21     .text.uart_write:00000000 $t
+C:\Users\KARTHI~1\AppData\Local\Temp\cceByL0d.s:27     .text.uart_write:00000000 uart_write
+C:\Users\KARTHI~1\AppData\Local\Temp\cceByL0d.s:59     .text.uart_write:00000018 $d
+C:\Users\KARTHI~1\AppData\Local\Temp\cceByL0d.s:64     .text.uart_read_char:00000000 $t
+C:\Users\KARTHI~1\AppData\Local\Temp\cceByL0d.s:70     .text.uart_read_char:00000000 uart_read_char
+C:\Users\KARTHI~1\AppData\Local\Temp\cceByL0d.s:106    .text.uart_read_char:00000024 $d
+
+UNDEFINED SYMBOLS
+strlen
+HAL_UART_Transmit
+huart2
+HAL_UART_Receive
